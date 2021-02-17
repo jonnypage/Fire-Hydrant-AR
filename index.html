@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script>
+      THREEx.ArToolkitContext.baseURL =
+        'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/';
+    </script>
+    <script src="hydrant-ar.js"></script>
+    <link rel="stylesheet" href="hydrant-ar.css" />
+    <title>Hydrant-AR</title>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container">
+      <div class="header">
+        <div class="buttons">
+          <button onClick="getAPIData()" class="hydrants-grab">
+            Grab Hydrants
+          </button>
+        </div>
+        <div class="gps-data">
+          <div id="gps-latitude"></div>
+          <div id="gps-longitude"></div>
+          <div id="gps-accuracy"></div>
+        </div>
+      </div>
+      <a-scene
+        cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+        raycaster="objects: [gps-entity-place];"
+        vr-mode-ui="enabled: false"
+        arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; videoTexture: true; debugUIEnabled: false;"
+        renderer="antialias: true; alpha: true"
+      >
+        <a-camera id="camera" gps-camera rotation-reader></a-camera>
+      </a-scene>
+    </div>
+  </body>
+</html>

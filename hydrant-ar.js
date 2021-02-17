@@ -50,17 +50,20 @@ function getAPIData() {
           renderHydrants(hydrantContext.hydrants, hydrantContext.userLocation);
         });
     });
+  } else {
+    document.getElementById('gps-accuracy').innerHTML =
+      'Your device does not support GPS locations';
   }
 }
 
 function renderHydrants(hydrants, location) {
-  console.log('renderHydrants --------------------------------------------');
-  document.getElementById('gps-latitude').innerHTML =
-    'latitude: ' + location.latitude;
-  document.getElementById('gps-longitude').innerHTML =
-    'longitude: ' + location.longitude;
-  document.getElementById('gps-accuracy').innerHTML =
-    'accuracy: ' + location.accuracy;
+  // console.log('renderHydrants --------------------------------------------');
+  document.getElementById('gps-latitude-data').innerHTML =
+    Math.round(location.latitude * 100000) / 100000;
+  document.getElementById('gps-longitude-data').innerHTML =
+    Math.round(location.longitude * 100000) / 100000;
+  document.getElementById('gps-accuracy-data').innerHTML =
+    Math.round(location.accuracy * 100) / 100 + 'm';
 
   let scene = document.querySelector('a-scene');
   hydrants.forEach((hydrant) => {
@@ -74,7 +77,7 @@ function renderHydrants(hydrants, location) {
       'gps-entity-place',
       `latitude: ${latitude}; longitude: ${longitude};`
     );
-    model.setAttribute('scale', { x: 0.01, y: 0.01, z: 0.01 });
+    model.setAttribute('scale', { x: 1, y: 1, z: 1 });
     model.setAttribute('hydrantHandler');
     scene.appendChild(model);
   });

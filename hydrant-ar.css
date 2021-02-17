@@ -13,7 +13,7 @@ body {
 .header {
   position: fixed;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
@@ -21,9 +21,20 @@ body {
   width: 100%;
   z-index: 1;
   padding: 5px 0;
-  background-color: #2c3e50;
+  background-color: #0a1a1f;
   color: #fff;
 }
+.header .gps-data {
+  padding: 5px 0;
+}
+.header .gps-data div {
+  padding: 5px 0;
+}
 .header button {
-  padding: 5px;
+  padding: 10px;
+  background-color: #00d1a7;
+  color: #0a1a1f;
+  border: 0;
+  font-size: 15px;
+  font-weight: bold;
 }
